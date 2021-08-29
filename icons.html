@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Stream Icons Bar</title>
+</head>
+<style>
+	body 	{background-color:black;}
+	td   	{width: 400px; height: 600px;}
+	button	{width: 95px; height: 50px;}
+</style>
+
+<body>
+<table>
+<tr>
+	<td style="text-align: center;">
+		<div id="CannotRun" style="display: none;"><img src="CannotRun.png"></div>
+		<div id="Clothespin" style="display: none;"><img src="Clothespin.png"></div>
+		<div id="CrossHanded" style="display: none;"><img src="CrossHanded.png"></div>
+		<div id="FastMonsters" style="display: none;"><img src="FastMonsters.png"></div>
+		<div id="FlipPhones" style="display: none;"><img src="FlipPhones.png"></div>
+		<div id="GoPacifist" style="display: none;"><img src="GoPacifist.png"></div>
+		<div id="HoldBreath" style="display: none;"><img src="HoldBreath.png"></div>
+		<div id="Invisible" style="display: none;"><img src="Invisible.png"></div>
+		<div id="KeepCalm" style="display: none;"><img src="KeepCalm.png"></div>
+		<div id="MeleeOnly" style="display: none;"><img src="MeleeOnly.png"></div>
+		<div id="NoDamage" style="display: none;"><img src="NoDamage.png"></div>
+		<div id="OvenMitt" style="display: none;"><img src="OvenMitt.png"></div>
+		<div id="StickyWeapon" style="display: none;"><img src="StickyWeapon.png"></div>
+		<div id="StrafeOnly" style="display: none;"><img src="StrafeOnly.png"></div>
+	</td>
+	<td style="text-align: left;">
+		<button type="button" onclick="toggleCannotRun()"><b>Cannot run</b></button>
+		<button type="button" onclick="clearAll()"><b>Clear all</b></button><br/>
+		<button type="button" onclick="toggleClothespin()"><b>Clothespin</b></button><br/>
+		<button type="button" onclick="toggleCrossHanded()"><b>Cross handed</b></button><br/>
+		<button type="button" onclick="toggleFastMonsters()"><b>Fast monsters</b></button><br/>
+		<button type="button" onclick="toggleFlipPhones()"><b>Flip phones</b></button><br/>
+		<button type="button" onclick="toggleGoPacifist()"><b>Go pacifist</b></button><br/>
+		<button type="button" onclick="toggleHoldBreath()"><b>Hold breath</b></button><br/>
+		<button type="button" onclick="toggleInvisible()"><b>Invisible</b></button><br/>
+		<button type="button" onclick="toggleKeepCalm()"><b>Keep calm</b></button><br/>
+		<button type="button" onclick="toggleMeleeOnly()"><b>Melee only</b></button><br/>
+		<button type="button" onclick="toggleNoDamage()"><b>No damage</b></button><br/>
+		<button type="button" onclick="toggleOvenMitt()"><b>Oven mitt</b></button><br/>
+		<button type="button" onclick="toggleStickyWeapon()"><b>Sticky weapon</b></button><br/>
+		<button type="button" onclick="toggleStrafeOnly()"><b>Strafe only</b></button><br/>
+	</td>
+</tr>
+</table>
+</body>
+<script>
+on_sound = new Audio('on.wav');
+off_sound = new Audio('off.wav');
+
+function clearAll() {
+	var button = document.getElementById("CannotRun");
+	button.style.display = "none";
+	var button = document.getElementById("Clothespin");
+	button.style.display = "none";
+	var button = document.getElementById("CrossHanded");
+	button.style.display = "none";
+	var button = document.getElementById("FastMonsters");
+	button.style.display = "none";
+	var button = document.getElementById("FlipPhones");
+	button.style.display = "none";
+	var button = document.getElementById("GoPacifist");
+	button.style.display = "none";
+	var button = document.getElementById("HoldBreath");
+	button.style.display = "none";
+	var button = document.getElementById("Invisible");
+	button.style.display = "none";
+	var button = document.getElementById("KeepCalm");
+	button.style.display = "none";
+	var button = document.getElementById("MeleeOnly");
+	button.style.display = "none";
+	var button = document.getElementById("NoDamage");
+	button.style.display = "none";
+	var button = document.getElementById("OvenMitt");
+	button.style.display = "none";
+	var button = document.getElementById("StickyWeapon");
+	button.style.display = "none";
+	var button = document.getElementById("StrafeOnly");
+	button.style.display = "none";
+}
+function toggleCannotRun() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("CannotRun");
+	button.style.display = "block";
+	var duration_secs = 181
+	setTimeout()
+}
+function toggleClothespin() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("Clothespin");
+	button.style.display = "block";
+	var duration_secs = 186
+}
+function toggleCrossHanded() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("CrossHanded");
+	button.style.display = "block";
+	var duration_secs = 90
+}
+function toggleFastMonsters() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("FastMonsters");
+	button.style.display = "block";
+	var duration_secs = 130
+}
+function toggleFlipPhones() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("FlipPhones");
+	button.style.display = "block";
+	var duration_secs = 123
+}
+function toggleGoPacifist() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("GoPacifist");
+	button.style.display = "block";
+	var duration_secs = 121
+}
+function toggleHoldBreath() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("HoldBreath");
+	button.style.display = "block";
+	var duration_secs = 62
+}
+function toggleInvisible() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("Invisible");
+	button.style.display = "block";
+	var duration_secs = 150
+}
+function toggleKeepCalm() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("KeepCalm");
+	button.style.display = "block";
+	var duration_secs = 60
+}
+function toggleMeleeOnly() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("MeleeOnly");
+	button.style.display = "block";
+	var duration_secs = 120
+}
+function toggleNoDamage() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("NoDamage");
+	button.style.display = "block";
+	var duration_secs = 50
+}
+function toggleOvenMitt() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("OvenMitt");
+	button.style.display = "block";
+	var duration_secs = 118
+}
+function toggleStickyWeapon() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("StickyWeapon");
+	button.style.display = "block";
+	var duration_secs = 183
+}
+function toggleStrafeOnly() {
+	clearAll()
+	on_sound.play();
+	var button = document.getElementById("StrafeOnly");
+	button.style.display = "block";
+	var duration_secs = 60
+}
+</script>
+</html>
