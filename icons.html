@@ -12,7 +12,7 @@
 <body>
 <table>
 <tr>
-	<td style="text-align: center;">
+	<td style="text-align: center; vertical-align: top;">
 		<div id="CannotRun" style="display: none;"><img src="images/CannotRun.png"></div>
 		<div id="Clothespin" style="display: none;"><img src="images/Clothespin.png"></div>
 		<div id="CrossHanded" style="display: none;"><img src="images/CrossHanded.png"></div>
@@ -28,22 +28,22 @@
 		<div id="StickyWeapon" style="display: none;"><img src="images/StickyWeapon.png"></div>
 		<div id="StrafeOnly" style="display: none;"><img src="images/StrafeOnly.png"></div>
 	</td>
-	<td style="text-align: left;">
+	<td style="text-align: left; vertical-align: top;">
 		<button type="button" onclick="toggleIcon('CannotRun', '181')"><b>Cannot run</b></button>
 		<button type="button" onclick="clearAll()"><b>Clear all</b></button><br/>
-		<button type="button" onclick="toggleIcon('Clothespin', '186')"><b>Clothespin</b></button><br/>
-		<button type="button" onclick="toggleIcon('CrossHanded', '90')"><b>Cross handed</b></button><br/>
+		<button type="button" onclick="toggleIcon('Clothespin', '188')"><b>Clothespin</b></button><br/>
+		<button type="button" onclick="toggleIcon('CrossHanded', '100')"><b>Cross handed</b></button><br/>
 		<button type="button" onclick="toggleIcon('FastMonsters', '130')"><b>Fast monsters</b></button><br/>
-		<button type="button" onclick="toggleIcon('FlipPhones', '123')"><b>Flip phones</b></button><br/>
-		<button type="button" onclick="toggleIcon('GoPacifist', '121')"><b>Go pacifist</b></button><br/>
+		<button type="button" onclick="toggleIcon('FlipPhones', '124')"><b>Flip phones</b></button><br/>
+		<button type="button" onclick="toggleIcon('GoPacifist', '122')"><b>Go pacifist</b></button><br/>
 		<button type="button" onclick="toggleIcon('HoldBreath', '62')"><b>Hold breath</b></button><br/>
 		<button type="button" onclick="toggleIcon('Invisible', '150')"><b>Invisible</b></button><br/>
 		<button type="button" onclick="toggleIcon('KeepCalm', '60')"><b>Keep calm</b></button><br/>
-		<button type="button" onclick="toggleIcon('MeleeOnly', '120')"><b>Melee only</b></button><br/>
+		<button type="button" onclick="toggleIcon('MeleeOnly', '121')"><b>Melee only</b></button><br/>
 		<button type="button" onclick="toggleIcon('NoDamage', '50')"><b>No damage</b></button><br/>
-		<button type="button" onclick="toggleIcon('OvenMitt', '118')"><b>Oven mitt</b></button><br/>
+		<button type="button" onclick="toggleIcon('OvenMitt', '119')"><b>Oven mitt</b></button><br/>
 		<button type="button" onclick="toggleIcon('StickyWeapon', '183')"><b>Sticky weapon</b></button><br/>
-		<button type="button" onclick="toggleIcon('StrafeOnly', '60')"><b>Strafe only</b></button><br/>
+		<button type="button" onclick="toggleIcon('StrafeOnly', '61')"><b>Strafe only</b></button><br/>
 	</td>
 </tr>
 </table>
@@ -52,35 +52,62 @@
 on_sound = new Audio('sounds/on.wav');
 off_sound = new Audio('sounds/off.wav');
 
+const timeoutOffSound = new Map();
+const timeoutOpacity1 = new Map();
+const timeoutOpacity2 = new Map();
+const timeoutOpacity3 = new Map();
+const timeoutOpacity4 = new Map();
+const timeoutOpacity5 = new Map();
+const timeoutOpacity6 = new Map();
+const timeoutOpacity7 = new Map();
+const timeoutHideIcon = new Map();
+
 function clearAll() {
-	hideIcon("CannotRun");
-	hideIcon("Clothespin");
-	hideIcon("CrossHanded");
-	hideIcon("FastMonsters");
-	hideIcon("FlipPhones");
-	hideIcon("GoPacifist");
-	hideIcon("HoldBreath");
-	hideIcon("Invisible");
-	hideIcon("KeepCalm");
-	hideIcon("MeleeOnly");
-	hideIcon("NoDamage");
-	hideIcon("OvenMitt");
-	hideIcon("StickyWeapon");
-	hideIcon("StrafeOnly");
-		
-	clearTimeout(timeoutOffSound);
-	clearTimeout(timeoutOpacity1);
-	clearTimeout(timeoutOpacity2);
-	clearTimeout(timeoutOpacity3);
-	clearTimeout(timeoutOpacity4);
-	clearTimeout(timeoutOpacity5);
-	clearTimeout(timeoutOpacity6);
-	clearTimeout(timeoutOpacity7);
-	clearTimeout(timeoutHideIcon);
+	clearIcon("CannotRun");
+	clearIcon("Clothespin");
+	clearIcon("CrossHanded");
+	clearIcon("FastMonsters");
+	clearIcon("FlipPhones");
+	clearIcon("GoPacifist");
+	clearIcon("HoldBreath");
+	clearIcon("Invisible");
+	clearIcon("KeepCalm");
+	clearIcon("MeleeOnly");
+	clearIcon("NoDamage");
+	clearIcon("OvenMitt");
+	clearIcon("StickyWeapon");
+	clearIcon("StrafeOnly");
+}
+function clearIcon(iconName) {
+	hideIcon(iconName);
+	clearTimeout(timeoutOffSound.get(iconName));
+	clearTimeout(timeoutOpacity1.get(iconName));
+	clearTimeout(timeoutOpacity2.get(iconName));
+	clearTimeout(timeoutOpacity3.get(iconName));
+	clearTimeout(timeoutOpacity4.get(iconName));
+	clearTimeout(timeoutOpacity5.get(iconName));
+	clearTimeout(timeoutOpacity6.get(iconName));
+	clearTimeout(timeoutOpacity7.get(iconName));
+	clearTimeout(timeoutHideIcon.get(iconName));
+}
+
+function playOnSound() {
+	on_sound.pause();
+	on_sound.currentTime = 0;
+	off_sound.pause();
+	off_sound.currentTime = 0;
+	
+	on_sound.play();
 }
 function playOffSound() {
+	on_sound.pause();
+	on_sound.currentTime = 0;
+	off_sound.pause();
+	off_sound.currentTime = 0;
+	
 	off_sound.play();
 }
+
 function showIcon(elementId) {
 	document.getElementById(elementId).style.display = "block";
 	document.getElementById(elementId).style.opacity = 1.0;
@@ -92,32 +119,33 @@ function setOpacity(elementId, opacity) {
 	document.getElementById(elementId).style.opacity = opacity;
 }
 
-var timeoutOffSound;
-var timeoutOpacity1;
-var timeoutOpacity2;
-var timeoutOpacity3;
-var timeoutOpacity4;
-var timeoutOpacity5;
-var timeoutOpacity6;
-var timeoutOpacity7;
-var timeoutHideIcon;
-
 function toggleIcon(iconName, duration_secs) {
 	if (duration_secs < 4) {
 		duration_secs = 4;
 	}
-	clearAll();
-	on_sound.play();
+	
+	clearIcon(iconName);
+	playOnSound();
 	showIcon(iconName);
-	timeoutOffSound = setTimeout(playOffSound, (duration_secs - 3.0) * 1000);
-	timeoutOpacity1 = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 3.5) * 1000);
-	timeoutOpacity2 = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 3.0) * 1000);
-	timeoutOpacity3 = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 2.5) * 1000);
-	timeoutOpacity4 = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 2.0) * 1000);
-	timeoutOpacity5 = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 1.5) * 1000);
-	timeoutOpacity6 = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 1.0) * 1000);
-	timeoutOpacity7 = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 0.5) * 1000);
-	timeoutHideIcon = setTimeout(hideIcon.bind(null, iconName), (duration_secs) * 1000);
+	
+	timeout = setTimeout(playOffSound, (duration_secs - 3.0) * 1000);
+	timeoutOffSound.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 3.5) * 1000);
+	timeoutOpacity1.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 3.0) * 1000);
+	timeoutOpacity2.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 2.5) * 1000);
+	timeoutOpacity3.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 2.0) * 1000);
+	timeoutOpacity4.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 1.5) * 1000);
+	timeoutOpacity5.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 1.0), (duration_secs - 1.0) * 1000);
+	timeoutOpacity6.set(iconName, timeout);
+	timeout = setTimeout(setOpacity.bind(null, iconName, 0.5), (duration_secs - 0.5) * 1000);
+	timeoutOpacity7.set(iconName, timeout);
+	timeout = setTimeout(hideIcon.bind(null, iconName), (duration_secs) * 1000);
+	timeoutHideIcon.set(iconName, timeout);
 }
 </script>
 </html>
